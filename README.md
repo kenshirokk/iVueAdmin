@@ -1,6 +1,6 @@
 # vue-admin-mobile
 
-> A Vue.js project
+> 地狱难度
 
 ## Build Setup
 
@@ -8,7 +8,7 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:8089
 npm run dev
 
 # build for production with minification
