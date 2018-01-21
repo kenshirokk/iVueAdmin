@@ -29,12 +29,16 @@
 </template>
 
 <script>
+    import Bus from '@/bus'
     export default {
         name: "index",
         data() {
           return {
             openSide: false
           }
+        },
+        created() {
+          Bus.$on('toggleSide', () => this.openSide = !this.openSide)
         }
     }
 </script>

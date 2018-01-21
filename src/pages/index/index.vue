@@ -2,7 +2,7 @@
     <v-ons-page>
       <v-ons-toolbar>
         <div class="left">
-          <v-ons-toolbar-button>
+          <v-ons-toolbar-button @click="toggleSide">
             <v-ons-icon icon="ion-navicon, material:md-more-vert"></v-ons-icon>
           </v-ons-toolbar-button>
         </div>
@@ -13,8 +13,14 @@
 </template>
 
 <script>
+    import Bus from '@/bus'
     export default {
-        name: "index"
+        name: "index",
+        methods:{
+          toggleSide() {
+            Bus.$emit('toggleSide')
+          }
+        }
     }
 </script>
 
