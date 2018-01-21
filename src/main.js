@@ -2,13 +2,14 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
 import 'font-awesome/css/font-awesome.css'
-import 'onsenui/css/onsenui-core.css'
+import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css'
 
 import Vue from 'vue'
 import $ons from 'vue-onsenui/esm'
 import * as VOns from './vue-onsen-components'
 import store from './store'
+import router from './router'
 import App from './App'
 
 Vue.config.productionTip = false
@@ -20,6 +21,7 @@ Object.values(VOns).forEach(comp => Vue.component(comp.name, comp))
 new Vue({
   el: '#app',
   store,
+  router,
   template: '<App/>',
   components: { App }
 })
