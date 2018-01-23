@@ -1,8 +1,15 @@
 <template>
-  <v-ons-splitter-side width="150px" swipeable collapse="" side="left" :open.sync="openSide">
+  <v-ons-splitter-side width="200px" swipeable collapse="" side="left" :open.sync="openSide">
     <v-ons-page>
+      <v-ons-card>
+        这里放用户名,头像,和其他信息
+        等大神病好了来做
+      </v-ons-card>
       <v-ons-list>
-        <v-ons-list-item @click="openSide = false"><router-link :to="'/index'">首页</router-link></v-ons-list-item>
+        <v-ons-list-item @click="openSide = false">
+          <v-ons-icon icon="md-face" class="list-item__icon"></v-ons-icon>
+          <router-link :to="'/index'">首页</router-link>
+        </v-ons-list-item>
         <v-ons-list-item @click="openSide = false"><router-link :to="'/mall'">商城管理</router-link></v-ons-list-item>
         <v-ons-list-item @click="openSide = false"><router-link :to="'/player'">玩家管理</router-link></v-ons-list-item>
 
