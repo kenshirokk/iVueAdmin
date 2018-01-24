@@ -6,6 +6,10 @@ export function getToken() {
   return Cookies.get(TokenKey)
 }
 
+export function getAuth() {
+  return Cookies.get('auth')
+}
+
 export function setToken(token) {
   return Cookies.set(TokenKey, token,{ expires: 1 })
 }
