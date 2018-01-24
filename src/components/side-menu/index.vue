@@ -1,0 +1,49 @@
+<template>
+  <v-ons-splitter-side width="200px" swipeable collapse="" side="left" :open.sync="openSide">
+    <v-ons-page>
+      <v-ons-card>
+        这里放用户名,头像,和其他信息
+        等大神病好了来做
+      </v-ons-card>
+      <v-ons-list>
+        <v-ons-list-item @click="openSide = false">
+          <v-ons-icon icon="md-face" class="list-item__icon"></v-ons-icon>
+          <router-link :to="'/index'">首页</router-link>
+        </v-ons-list-item>
+        <v-ons-list-item @click="openSide = false"><router-link :to="'/mall'">商城管理</router-link></v-ons-list-item>
+        <v-ons-list-item @click="openSide = false"><router-link :to="'/player'">玩家管理</router-link></v-ons-list-item>
+
+        <v-ons-list-item @click="openSide = false"><router-link :to="'/proxy/create'">创建代理</router-link></v-ons-list-item>
+        <v-ons-list-item @click="openSide = false"><router-link :to="'/proxy/my'">我的代理</router-link></v-ons-list-item>
+        <v-ons-list-item @click="openSide = false"><router-link :to="'/proxy/account'">流水查询</router-link></v-ons-list-item>
+        <v-ons-list-item @click="openSide = false"><router-link :to="'/proxy/sell'">出售记录</router-link></v-ons-list-item>
+        <v-ons-list-item @click="openSide = false"><router-link :to="'/proxy/performance'">业绩查询</router-link></v-ons-list-item>
+        <v-ons-list-item @click="openSide = false"><router-link :to="'/proxy/drawMoney'">提现审批</router-link></v-ons-list-item>
+
+        <v-ons-list-item @click="openSide = false"><router-link :to="'/sys/message'">系统公告</router-link></v-ons-list-item>
+        <v-ons-list-item @click="openSide = false"><router-link :to="'/sys/game'">游戏设置</router-link></v-ons-list-item>
+
+      </v-ons-list>
+    </v-ons-page>
+  </v-ons-splitter-side>
+</template>
+
+<script>
+  import Bus from '@/bus'
+
+  export default {
+        name: "index",
+        data() {
+          return {
+            openSide: false
+          }
+        },
+        created() {
+          Bus.$on('toggleSide', () => this.openSide = !this.openSide)
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
