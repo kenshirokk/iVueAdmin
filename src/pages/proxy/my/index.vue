@@ -1,14 +1,6 @@
 <template>
     <v-ons-page>
-      <v-ons-toolbar>
-        <div class="left">
-          <v-ons-toolbar-button>
-            <v-ons-icon icon="ion-navicon, material:md-more-vert"></v-ons-icon>
-          </v-ons-toolbar-button>
-        </div>
-        <div class="center">我的代理</div>
-      </v-ons-toolbar>
-      this is 我的代理 page
+      <app-head title="我的代理"></app-head> is 我的代理 page
     </v-ons-page>
 </template>
 
