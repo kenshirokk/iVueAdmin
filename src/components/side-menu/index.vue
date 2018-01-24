@@ -3,10 +3,10 @@
     <v-ons-page>
       <div class="backgroundColor">
       <v-ons-card>
-        这里放用户名,头像,和其他信息
-        等大神病好了来做
+        <img :src="avatar" class="list-item__thumbnail">
+        <div class="center lh">{{nickname}}</div>
       </v-ons-card>
-      <v-ons-list>
+      <v-ons-list modifier="noborder">
         <v-ons-list-item @click="openSide = false" modifier="material">
           <v-ons-icon icon="md-layers" class="list-item__icon"></v-ons-icon>
           <router-link :to="'/index'">
@@ -61,13 +61,17 @@
         name: "index",
         data() {
           return {
-            openSide: false
+            openSide: false,
+            avatar: '',
+            nickname: '',
           }
         },
         created() {
           Bus.$on('toggleSide', () => this.openSide = !this.openSide)
 
-          this.getLoginUser()
+          let loginUser = this.getLoginUser()
+          this.avatar = loginUser.avatar
+          this.nickname = loginUser.nickname
         },
         methods:{
           ...mapGetters (['getLoginUser']),
@@ -86,7 +90,11 @@
   .router-link-active{
     color: rgb(64, 158, 255);
   }
-  .backgroundColor, .list {
+  .backgroundColor, .list, .card{
     background-color: rgb(48, 65, 86);
+  }
+  img{
+    display: inline;
+    margin-bottom: 5px;
   }
 </style>
