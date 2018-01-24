@@ -53,7 +53,6 @@
         },
         methods: {
           ...mapMutations('auth',['setLoginUser']),
-          ...mapGetters (['getLoginUser']),
           login(){
             if(!this.username){
               this.$ons.notification.toast('请输入用户名', {timeout: 2000})
@@ -65,8 +64,6 @@
                 console.log(response)
                 getInfo().then(response => {
                   this.modalVisible = false
-                  this.setLoginUser(response.data.entity);
-                  console.log(this.getLoginUser())
                   this.$router.push('/index')
                 })
               }).catch(() => {
