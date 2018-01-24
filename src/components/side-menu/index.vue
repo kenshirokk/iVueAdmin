@@ -1,6 +1,7 @@
 <template>
   <v-ons-splitter-side width="200px" swipeable collapse="" side="left" :open.sync="openSide">
     <v-ons-page>
+      <div class="backgroundColor">
       <v-ons-card>
         这里放用户名,头像,和其他信息
         等大神病好了来做
@@ -8,7 +9,9 @@
       <v-ons-list>
         <v-ons-list-item @click="openSide = false" modifier="material">
           <v-ons-icon icon="md-layers" class="list-item__icon"></v-ons-icon>
-          <router-link :to="'/index'" style="text-decoration: none; color: black"><div class="center">首页</div></router-link>
+          <router-link :to="'/index'">
+            首页
+          </router-link>
         </v-ons-list-item>
         <v-ons-list-item @click="openSide = false" modifier="material">
           <v-ons-icon icon="md-shopping-cart" class="list-item__icon"></v-ons-icon>
@@ -21,7 +24,7 @@
 
         <v-ons-list-item modifier="material">
           <v-ons-icon icon="md-globe" class="list-item__icon"></v-ons-icon>
-          代理管理
+          <div class=" lh">代理管理</div>
         </v-ons-list-item>
         <v-ons-list-item @click="openSide = false" modifier="material">
           <v-ons-list modifier="noborder">
@@ -36,7 +39,7 @@
 
         <v-ons-list-item modifier="material">
           <v-ons-icon icon="md-settings" class="list-item__icon"></v-ons-icon>
-          系统管理
+          <div class=" lh">系统管理</div>
         </v-ons-list-item>
         <v-ons-list-item>
           <v-ons-list modifier="noborder">
@@ -45,6 +48,7 @@
           </v-ons-list>
         </v-ons-list-item>
       </v-ons-list>
+    </div>
     </v-ons-page>
   </v-ons-splitter-side>
 </template>
@@ -74,6 +78,15 @@
 <style scoped>
   a{
     text-decoration: none;
-    color: #000;
+    color: rgb(255, 255, 255);
+  }
+  .list-item__icon, .lh{
+    color: rgb(255, 255, 255);
+  }
+  .router-link-active{
+    color: rgb(64, 158, 255);
+  }
+  .backgroundColor, .list {
+    background-color: rgb(48, 65, 86);
   }
 </style>
