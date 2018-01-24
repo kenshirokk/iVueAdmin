@@ -12,10 +12,12 @@ import store from './store'
 import router from './router'
 import App from './App'
 import '@/permission'
+import appHead from '@/components/head'
 
 Vue.config.productionTip = false
 
 Vue.use($ons)
+Vue.component('app-head',appHead)
 Object.values(VOns).forEach(comp => Vue.component(comp.name, comp))
 
 /* eslint-disable no-new */
