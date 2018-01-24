@@ -11,6 +11,7 @@ import * as VOns from './vue-onsen-components'
 import store from './store'
 import router from './router'
 import App from './App'
+import '@/permission'
 
 Vue.config.productionTip = false
 
