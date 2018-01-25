@@ -40,7 +40,6 @@ export default new Vuex.Store({
   modules: {
     splitter,
     auth
-
   },
   getters: {
     getLoginUser: (state) => {
