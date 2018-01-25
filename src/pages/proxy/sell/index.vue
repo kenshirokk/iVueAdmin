@@ -1,13 +1,6 @@
 <template>
     <v-ons-page>
-      <v-ons-toolbar>
-        <div class="left">
-          <v-ons-toolbar-button>
-            <v-ons-icon icon="ion-navicon, material:md-more-vert"></v-ons-icon>
-          </v-ons-toolbar-button>
-        </div>
-        <div class="center">出售记录</div>
-      </v-ons-toolbar>
+      <app-head title="出售记录"></app-head>
       this is 出售记录 page
     </v-ons-page>
 </template>

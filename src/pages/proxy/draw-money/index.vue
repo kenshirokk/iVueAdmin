@@ -1,13 +1,6 @@
 <template>
     <v-ons-page>
-      <v-ons-toolbar>
-        <div class="left">
-          <v-ons-toolbar-button>
-            <v-ons-icon icon="ion-navicon, material:md-more-vert"></v-ons-icon>
-          </v-ons-toolbar-button>
-        </div>
-        <div class="center">提现审批</div>
-      </v-ons-toolbar>
+      <app-head title="提现审批"></app-head>
       this is 提现审批 page
     </v-ons-page>
 </template>
