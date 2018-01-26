@@ -76,7 +76,7 @@
         <v-ons-list modifier="noborder">
           <v-ons-list-item modifier="nodivider">
             <div class="center">
-              <v-ons-button modifier="cta" style="margin: 6px 0">
+              <v-ons-button modifier="cta" style="margin: 6px 0" @click="loginOutUser">
                 <v-ons-icon icon="fa-sign-out"></v-ons-icon>
                 退出系统
               </v-ons-button>
@@ -90,7 +90,7 @@
 
 <script>
   import Bus from '@/bus'
-  import {mapGetters} from 'vuex'
+  import {mapGetters,mapMutations} from 'vuex'
 
   export default {
     name: "index",
@@ -112,11 +112,16 @@
     },
     methods: {
       ...mapGetters(['getLoginUser']),
+      ...mapMutations('auth',['loginOut']),
       toggleProxy() {
         this.showProxy = !this.showProxy
       },
       toggleSys() {
         this.showSys = !this.showSys
+      },
+      loginOutUser() {
+        this.loginOut();
+        this.$router.push('/login')
       }
     }
   }
