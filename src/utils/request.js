@@ -31,7 +31,7 @@ service.interceptors.response.use(
   },
   error => {
     console.log('err' + error)// for debug
-     $ons.notification.toast(error.message, {timeout: 2000})
+    //$ons.notification.toast(error.message, {timeout: 2000})
     return Promise.reject(error)
   }
 )
