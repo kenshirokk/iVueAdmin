@@ -92,6 +92,9 @@
             this.temp.alipay = '';
             this.temp.bankno = '';
             this.modalVisible = false;
+            this.getInfo();
+          }).catch(() => {
+            this.modalVisible = false;
           })
         }else{
           this.modalVisible = false;
