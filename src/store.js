@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {getToken, setToken, removeToken} from '@/utils/auth'
 
 Vue.use(Vuex)
 const splitter = {
@@ -41,16 +40,14 @@ const sysGame = {
 const auth = {
   namespaced: true,
   state: {
-    loginUser: getToken() ? JSON.parse(getToken()) : {}
+    loginUser: {}
   },
   mutations: {
     setLoginUser(state, loginUser) {
       state.loginUser = loginUser
-      setToken(loginUser)
     },
     loginOut(state) {
       state.loginUser = {}
-      removeToken()
     }
   }
 }

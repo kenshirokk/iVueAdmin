@@ -13,8 +13,10 @@ import router from './router'
 import App from './App'
 import '@/permission'
 import appHead from '@/components/head'
+import '@/style/index.css' // global css
 
 Vue.config.productionTip = false
+Vue.prototype.$format = require('@/utils/format')
 
 Vue.use($ons)
 Vue.component('app-head',appHead)

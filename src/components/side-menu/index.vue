@@ -53,6 +53,9 @@
                 <v-ons-list-item @click="openSide = false" modifier="nodivider">
                   <router-link :to="'/proxy/drawMoney'">提现审批</router-link>
                 </v-ons-list-item>
+                <v-ons-list-item @click="openSide = false" modifier="nodivider">
+                  <router-link :to="'/proxy/apply'">提现申请</router-link>
+                </v-ons-list-item>
               </v-ons-list>
             </v-ons-list-item>
           </transition>
@@ -91,6 +94,7 @@
 <script>
   import Bus from '@/bus'
   import {mapGetters,mapMutations} from 'vuex'
+  import { logout } from '@/api/login'
 
   export default {
     name: "index",
@@ -120,8 +124,10 @@
         this.showSys = !this.showSys
       },
       loginOutUser() {
-        this.loginOut();
-        this.$router.push('/login')
+        logout().then(() => {
+          this.loginOut();
+          this.$router.push('/login')
+       })
       }
     }
   }
