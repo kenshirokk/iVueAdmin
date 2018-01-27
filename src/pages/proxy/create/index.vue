@@ -6,7 +6,7 @@
         <form ref="dataForm">
           <v-ons-list>
             <v-ons-list-item label="玩家ID：" prop="id">
-              <v-ons-input placeholder="请输入玩家ID" v-model="temp.id" @blur="validateId"></v-ons-input>
+              <v-ons-input placeholder="请输入玩家ID" v-model="temp.id" @blur="validateId" style=" background-image: none;"></v-ons-input>
             </v-ons-list-item>
             <v-ons-list-item label="玩家昵称："  >
               <div style="text-align: left;">{{temp.nickname}}</div>
@@ -20,13 +20,13 @@
               </div>
             </v-ons-list-item>
             <v-ons-list-item label="设置密码：" prop="password">
-              <v-ons-input type="password" placeholder="请输入密码"  v-model="temp.password"></v-ons-input>
+              <v-ons-input type="password" placeholder="请输入密码"  v-model="temp.password" style=" background-image: none;"></v-ons-input>
             </v-ons-list-item>
             <v-ons-list-item label="确认密码：" prop="password2">
-              <v-ons-input type="password" placeholder="请确认密码"  v-model="temp.password2" ></v-ons-input>
+              <v-ons-input type="password" placeholder="请确认密码"  v-model="temp.password2" style=" background-image: none;"></v-ons-input>
             </v-ons-list-item>
             <v-ons-list-item label="手机号：" prop="phoneNo">
-              <v-ons-input placeholder="请输入手机号" v-model="temp.phoneNo"></v-ons-input>
+              <v-ons-input placeholder="请输入手机号" v-model="temp.phoneNo" style=" background-image: none;"></v-ons-input>
             </v-ons-list-item>
             <v-ons-list-item>
               <v-ons-button modifier="large" style="margin: 6px 0" @click="create">保存</v-ons-button>
