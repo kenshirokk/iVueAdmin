@@ -35,6 +35,14 @@
         </form>
       </div>
     </div>
+    <v-ons-modal :visible="modalVisible" >
+      <p style="text-align: center">
+        <v-ons-icon icon="fa-spinner" spin  size="32px"></v-ons-icon>
+        <br/>
+        <br/>
+        <span style="font-size: 14px;">加载中...</span>
+      </p>
+    </v-ons-modal>
   </v-ons-page>
 
 </template>
@@ -46,7 +54,7 @@
     name: "create-proxy",
     data(){
       return{
-        showUserAvatar: false,
+        modalVisible: false,
         temp: {
           id:'',
           nickname:'无',
@@ -61,12 +69,14 @@
       validateId(callback) {
         if (/^[1-9]\d*$/.test(this.temp.id) === false) {
           this.$ons.notification.toast('用户ID必须是一个正整数', {timeout: 2000})
+          this.modalVisible = false;
         } else {
           getById(this.temp.id).then(response1 => {
             if(response1.data.entity){
               getByUserId(this.temp.id).then(response2 => {
                 if(response2.data.entity){
                   this.$ons.notification.toast('这个玩家已经是代理了', {timeout: 2000})
+                  this.modalVisible = false;
                   this.temp.avatar =  require('@/assets/image/default_avatar.jpg');
                   this.temp.nickname = '无';
                 }else{
@@ -80,11 +90,11 @@
               })
             }else{
               this.$ons.notification.toast('玩家不存在', {timeout: 2000})
+              this.modalVisible = false;
               this.temp.avatar =  require('@/assets/image/default_avatar.jpg');
               this.temp.nickname = '无';
             }
           })
-
         }
       },
       validatePassword() {
@@ -108,6 +118,7 @@
         }
       },
       create(){
+        this.modalVisible = true;
         this.validateId(() => {
           if(this.validatePassword() && this.validatePhone()){
             var params = {userId:this.temp.id,password:this.temp.password,phone:this.temp.phoneNo}
@@ -115,11 +126,14 @@
               this.$ons.notification.toast('创建成功', {timeout: 2000})
               this.temp.id = '';
               this.temp.avatar =  require('@/assets/image/default_avatar.jpg');;
-              this.temp.nickname = '';
+              this.temp.nickname = '无';
               this.temp.password = '';
               this.temp.password2 = '';
               this.temp.phoneNo = '';
+              this.modalVisible = false;
             })
+          }else{
+            this.modalVisible = false;
           }
 
         })
