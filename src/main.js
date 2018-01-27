@@ -13,6 +13,7 @@ import router from './router'
 import App from './App'
 import '@/permission'
 import appHead from '@/components/head'
+import '@/style/index.css' // global css
 
 Vue.config.productionTip = false
 
