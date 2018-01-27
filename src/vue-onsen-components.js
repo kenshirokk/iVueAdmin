@@ -22,7 +22,7 @@ export { default as VOnsListHeader } from 'vue-onsenui/esm/components/VOnsListHe
 export { default as VOnsListItem } from 'vue-onsenui/esm/components/VOnsListItem'
 export { default as VOnsListTitle } from 'vue-onsenui/esm/components/VOnsListTitle'
 export { default as VOnsModal } from 'vue-onsenui/esm/components/VOnsModal'
-// export { default as VOnsNavigator } from 'vue-onsenui/esm/components/VOnsNavigator'
+export { default as VOnsNavigator } from 'vue-onsenui/esm/components/VOnsNavigator'
 export { default as VOnsPage } from 'vue-onsenui/esm/components/VOnsPage'
 // export { default as VOnsPopover } from 'vue-onsenui/esm/components/VOnsPopover'
 // export { default as VOnsProgressBar } from 'vue-onsenui/esm/components/VOnsProgressBar'

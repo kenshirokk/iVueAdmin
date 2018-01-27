@@ -19,6 +19,25 @@ const splitter = {
   }
 }
 
+const sysGame = {
+  namespaced: true,
+  state: {
+    pageStack:[],
+    updateData: ''
+  },
+  mutations: {
+    push(state, page) {
+      state.pageStack.push(page)
+    },
+    back(state) {
+      state.pageStack.pop()
+    },
+    prepareUpdate(state, updateData) {
+      state.updateData = updateData
+    }
+  }
+}
+
 const auth = {
   namespaced: true,
   state: {
@@ -39,7 +58,8 @@ const auth = {
 export default new Vuex.Store({
   modules: {
     splitter,
-    auth
+    auth,
+    sysGame
   },
   getters: {
     getLoginUser: (state) => {
