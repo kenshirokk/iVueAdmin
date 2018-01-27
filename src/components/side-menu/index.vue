@@ -53,6 +53,9 @@
                 <v-ons-list-item @click="openSide = false" modifier="nodivider">
                   <router-link :to="'/proxy/drawMoney'">提现审批</router-link>
                 </v-ons-list-item>
+                <v-ons-list-item @click="openSide = false" modifier="nodivider">
+                  <router-link :to="'/proxy/apply'">提现申请</router-link>
+                </v-ons-list-item>
               </v-ons-list>
             </v-ons-list-item>
           </transition>
