@@ -63,7 +63,7 @@
             </tr>
             <tr>
               <td>充值时间：</td>
-              <td>{{item.orderDatetime}}</td>
+              <td>{{$format.dateFormat(item.orderDatetime)}}</td>
             </tr>
           </table>
         </v-ons-list-item>

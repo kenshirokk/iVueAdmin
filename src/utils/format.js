@@ -1,8 +1,7 @@
 
 import moment from 'moment/moment'
 
-export function dateFormat(row, column){
-    var date = row[column.property];
+export function dateFormat(date){
     if (date == undefined) {
       return "";
     }
