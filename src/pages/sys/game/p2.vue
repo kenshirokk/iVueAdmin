@@ -21,7 +21,7 @@
       </v-ons-list-header>
       <v-ons-list-item>
         <div class="center">
-          {{updateData.paramName}}
+          {{updateDateTemp.paramName}}
         </div>
       </v-ons-list-item>
       <v-ons-list-header>
@@ -29,7 +29,7 @@
       </v-ons-list-header>
       <v-ons-list-item>
         <div class="center">
-          {{updateData.paramDesc}}
+          {{updateDateTemp.paramDesc}}
         </div>
       </v-ons-list-item>
       <v-ons-list-header>
@@ -37,7 +37,7 @@
       </v-ons-list-header>
       <v-ons-list-item>
         <div class="center">
-          <v-ons-input v-model="updateData.paramValue">
+          <v-ons-input v-model="updateDateTemp.paramValue">
           </v-ons-input>
         </div>
       </v-ons-list-item>
@@ -53,14 +53,14 @@
   export default {
     name: "p2",
     computed: {
-      ...mapState('sysGame', ['pageStack', 'updateData'])
+      ...mapState('sysGame', ['pageStack', 'updateData', 'updateDateTemp'])
     },
     created() {
     },
     methods: {
       ...mapMutations('sysGame', ['back']),
       save() {
-        update(this.updateData)
+        update(this.updateDateTemp)
           .then(() => {
             this.back()
           })

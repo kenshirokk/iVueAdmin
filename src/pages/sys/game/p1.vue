@@ -45,14 +45,16 @@
       this.getList()
     },
     methods: {
-      ...mapMutations('sysGame', ['push', 'prepareUpdate']),
+      ...mapMutations('sysGame', ['push', 'prepareUpdate', 'prepareUpdateTemp']),
       getList() {
         getList().then(response => {
           this.tableData = response.data.list
         })
       },
       update(data) {
+        let updateDataTemp = Object.assign({}, data)
         this.prepareUpdate(data)
+        this.prepareUpdateTemp(updateDataTemp)
         this.push(P2)
       }
     }
