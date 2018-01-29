@@ -3,7 +3,7 @@ import qs from 'qs'
 
 export function getList(pageNum, pageSize) {
   return request({
-    url: '/bulletin?pageNum=' + pageNum + '&pageSize' + pageSize,
+    url: '/bulletin?pageNum=' + pageNum + '&pageSize=' + pageSize,
     method: 'GET'
   })
 }

@@ -21,7 +21,7 @@ const splitter = {
 const sysGame = {
   namespaced: true,
   state: {
-    pageStack:[],
+    pageStack: [],
     updateData: '',
     updateDateTemp: ''
   },
@@ -37,6 +37,22 @@ const sysGame = {
     },
     prepareUpdateTemp(state, updateDateTemp) {
       state.updateDateTemp = updateDateTemp
+    }
+  }
+}
+
+const sysMessage = {
+  namespaced: true,
+  state: {
+    pageStack: [],
+
+  },
+  mutations: {
+    push(state, page) {
+      state.pageStack.push(page)
+    },
+    back(state) {
+      state.pageStack.pop()
     }
   }
 }
@@ -60,7 +76,8 @@ export default new Vuex.Store({
   modules: {
     splitter,
     auth,
-    sysGame
+    sysGame,
+    sysMessage
   },
   getters: {
     getLoginUser: (state) => {
