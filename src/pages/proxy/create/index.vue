@@ -82,7 +82,6 @@
                 }else{
                   this.temp.avatar = response1.data.entity.customFace;
                   this.temp.nickname = response1.data.entity.nickName;
-                  console.log(callback )
                   if(typeof callback == 'function'){
                     callback();
                   }
