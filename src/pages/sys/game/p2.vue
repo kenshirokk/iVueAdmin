@@ -5,7 +5,7 @@
         修改
       </div>
       <div class="left">
-        <v-ons-back-button>Back</v-ons-back-button>
+        <v-ons-back-button>返回</v-ons-back-button>
       </div>
       <div class="right">
         <v-ons-toolbar-button @click="save">
@@ -21,7 +21,7 @@
       </v-ons-list-header>
       <v-ons-list-item>
         <div class="center">
-          {{updateDateTemp.paramName}}
+          {{updateData.paramName}}
         </div>
       </v-ons-list-item>
       <v-ons-list-header>
@@ -29,7 +29,7 @@
       </v-ons-list-header>
       <v-ons-list-item>
         <div class="center">
-          {{updateDateTemp.paramDesc}}
+          {{updateData.paramDesc}}
         </div>
       </v-ons-list-item>
       <v-ons-list-header>
@@ -37,7 +37,7 @@
       </v-ons-list-header>
       <v-ons-list-item>
         <div class="center">
-          <v-ons-input v-model="updateDateTemp.paramValue">
+          <v-ons-input v-model="updateData.paramValue">
           </v-ons-input>
         </div>
       </v-ons-list-item>
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+  import Bus from '@/bus'
   import {mapState} from 'vuex'
   import {mapMutations} from 'vuex'
   import {update} from '@/api/gameConfig'
@@ -53,15 +54,16 @@
   export default {
     name: "p2",
     computed: {
-      ...mapState('sysGame', ['pageStack', 'updateData', 'updateDateTemp'])
+      ...mapState('sysGame', ['pageStack', 'updateData'])
     },
     created() {
     },
     methods: {
       ...mapMutations('sysGame', ['back']),
       save() {
-        update(this.updateDateTemp)
+        update(this.updateData)
           .then(() => {
+            Bus.$emit('refreshData', this.updateData)
             this.back()
           })
           .catch(() => {

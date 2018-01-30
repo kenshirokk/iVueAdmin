@@ -26,6 +26,7 @@
 </template>
 
 <script>
+  import Bus from '@/bus'
   import {getList} from '@/api/gameConfig'
   import P2 from './p2'
   import {mapState} from 'vuex'
@@ -43,6 +44,15 @@
     },
     created() {
       this.getList()
+      Bus.$on('refreshData', (data) => {
+        for (let d of this.tableData) {
+          if (d.id === data.id) {
+            let index = this.tableData.indexOf(d)
+            this.tableData.splice(index, 1, data)
+            break
+          }
+        }
+      })
     },
     methods: {
       ...mapMutations('sysGame', ['push', 'prepareUpdate', 'prepareUpdateTemp']),
@@ -53,8 +63,7 @@
       },
       update(data) {
         let updateDataTemp = Object.assign({}, data)
-        this.prepareUpdate(data)
-        this.prepareUpdateTemp(updateDataTemp)
+        this.prepareUpdate(updateDataTemp)
         this.push(P2)
       }
     }

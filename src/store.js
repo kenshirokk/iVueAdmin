@@ -23,7 +23,6 @@ const sysGame = {
   state: {
     pageStack: [],
     updateData: '',
-    updateDateTemp: ''
   },
   mutations: {
     push(state, page) {
@@ -34,9 +33,6 @@ const sysGame = {
     },
     prepareUpdate(state, updateData) {
       state.updateData = updateData
-    },
-    prepareUpdateTemp(state, updateDateTemp) {
-      state.updateDateTemp = updateDateTemp
     }
   }
 }
