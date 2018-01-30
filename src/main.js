@@ -13,6 +13,7 @@ import router from './router'
 import App from './App'
 import '@/permission'
 import appHead from '@/components/head'
+import search from '@/components/search'
 import '@/style/index.css' // global css
 
 Vue.config.productionTip = false
@@ -20,6 +21,7 @@ Vue.prototype.$format = require('@/utils/format')
 
 Vue.use($ons)
 Vue.component('app-head',appHead)
+Vue.component('app-search',search)
 Object.values(VOns).forEach(comp => Vue.component(comp.name, comp))
 
 /* eslint-disable no-new */
