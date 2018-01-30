@@ -16,6 +16,9 @@
     created() {
       this.push(P1)
     },
+    beforeDestroy() {
+      this.empty()
+    },
     computed: {
       ...mapState('sysMessage', ['pageStack'])
     },
@@ -23,7 +26,7 @@
       P1, P2
     },
     methods: {
-      ...mapMutations('sysMessage', ['push'])
+      ...mapMutations('sysMessage', ['push', 'empty'])
     }
   }
 </script>

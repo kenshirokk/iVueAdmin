@@ -17,27 +17,20 @@
     </v-ons-toolbar>
     <v-ons-list>
       <v-ons-list-header>
-        参数名称
+        商品价格
       </v-ons-list-header>
       <v-ons-list-item>
         <div class="center">
-          {{updateData.paramName}}
+          <v-ons-input v-model="updateData.price">
+          </v-ons-input>
         </div>
       </v-ons-list-item>
       <v-ons-list-header>
-        参数描述
+        商品数量
       </v-ons-list-header>
       <v-ons-list-item>
         <div class="center">
-          {{updateData.paramDesc}}
-        </div>
-      </v-ons-list-item>
-      <v-ons-list-header>
-        参数值
-      </v-ons-list-header>
-      <v-ons-list-item>
-        <div class="center">
-          <v-ons-input v-model="updateData.paramValue">
+          <v-ons-input v-model="updateData.goodsNum">
           </v-ons-input>
         </div>
       </v-ons-list-item>
@@ -49,21 +42,19 @@
   import Bus from '@/bus'
   import {mapState} from 'vuex'
   import {mapMutations} from 'vuex'
-  import {update} from '@/api/gameConfig'
+  import {update} from '@/api/mall'
 
   export default {
     name: "p2",
     computed: {
-      ...mapState('sysGame', ['pageStack', 'updateData'])
-    },
-    created() {
+      ...mapState('mall', ['pageStack', 'updateData'])
     },
     methods: {
-      ...mapMutations('sysGame', ['back']),
+      ...mapMutations('mall', ['back']),
       save() {
         update(this.updateData)
           .then(() => {
-            Bus.$emit('refreshSysGameData', this.updateData)
+            Bus.$emit('refreshMallData', this.updateData)
             this.back()
           })
           .catch(() => {

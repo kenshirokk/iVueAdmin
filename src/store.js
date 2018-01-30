@@ -18,6 +18,28 @@ const splitter = {
   }
 }
 
+const mall = {
+  namespaced: true,
+  state: {
+    pageStack: [],
+    updateData: '',
+  },
+  mutations: {
+    push(state, page) {
+      state.pageStack.push(page)
+    },
+    back(state) {
+      state.pageStack.pop()
+    },
+    prepareUpdate(state, updateData) {
+      state.updateData = updateData
+    },
+    empty(state) {
+      state.pageStack = []
+    }
+  }
+}
+
 const sysGame = {
   namespaced: true,
   state: {
@@ -33,6 +55,9 @@ const sysGame = {
     },
     prepareUpdate(state, updateData) {
       state.updateData = updateData
+    },
+    empty(state) {
+      state.pageStack = []
     }
   }
 }
@@ -49,6 +74,9 @@ const sysMessage = {
     },
     back(state) {
       state.pageStack.pop()
+    },
+    empty(state) {
+      state.pageStack = []
     }
   }
 }
@@ -72,6 +100,7 @@ export default new Vuex.Store({
   modules: {
     splitter,
     auth,
+    mall,
     sysGame,
     sysMessage
   },
