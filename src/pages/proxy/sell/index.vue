@@ -102,7 +102,6 @@
         getSellRecordVO(this.pageNum, this.pageSize,this.agencyId).then(response => {
           this.loading = false;
           this.tableData = this.pageNum == 1 ? response.data.list:this.tableData.concat(response.data.list)
-          console.log(this.tableData)
           this.total = response.data.total
           if(done){
             done()

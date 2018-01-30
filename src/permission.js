@@ -5,8 +5,6 @@ import { getInfo } from '@/api/login'
 
 const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
-  console.log(store.getters.getLoginUser)
-  console.log(store.getters.getLoginUser.id)
   if (store.getters.getLoginUser.id !== undefined) {
     if (to.path.indexOf('/login') !== -1) {
       next('/index')
