@@ -22,6 +22,7 @@
         </v-ons-row>
       </v-ons-list-item>
     </v-ons-list>
+    <v-ons-progress-bar indeterminate v-show="showProfressBar"></v-ons-progress-bar>
   </v-ons-page>
 </template>
 
@@ -36,6 +37,7 @@
     data() {
       return {
         tableData: [],
+        showProfressBar: true,
         pageNum: 1,
         pageSize: 10
       }
@@ -53,8 +55,10 @@
         })
       },
       getNext(done) {
+        this.showProfressBar = true
         getList(++this.pageNum, this.pageSize).then(response =>{
           this.tableData = this.tableData.concat(response.data.list)
+          this.showProfressBar = false
           done()
         })
       }
