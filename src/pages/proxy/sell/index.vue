@@ -1,6 +1,14 @@
 <template>
     <v-ons-page :infinite-scroll="next">
-      <app-head title="出售记录"></app-head>
+      <app-head title="出售记录">
+        <v-ons-toolbar-button @click="showSearch">
+          <v-ons-icon icon="ion-search"></v-ons-icon>
+        </v-ons-toolbar-button>
+        <app-search :temp="this.searchTemp"
+                    :list="[{placeholder:'请输入代理ID',name:'agencyId'}]"
+                    :visible.sync="showSearchVisible"
+                    @change-params="changeTemp"></app-search>
+      </app-head>
       <v-ons-pull-hook
       :action="ref"
       @changestate="state = $event.state"
@@ -68,7 +76,6 @@
           </table>
         </v-ons-list-item>
       </v-ons-list>
-
     </v-ons-page>
 </template>
 
@@ -79,14 +86,17 @@
     data() {
       return {
         pageNum: 1,
-        pageSize: 3,
+        pageSize: 5,
         total: 0,
         tableData: [],
         loading: false,
-        agencyId: '',
+        searchTemp:{
+          agencyId: '',
+        } ,
         userAvatar: '',
         showUserAvatar:false,
-        state: 'initial'
+        state: 'initial',
+        showSearchVisible: false
       }
     },
     created() {
@@ -99,7 +109,7 @@
       },
       getList(done) {
         this.loading = true;
-        getSellRecordVO(this.pageNum, this.pageSize,this.agencyId).then(response => {
+        getSellRecordVO(this.pageNum, this.pageSize,this.searchTemp.agencyId).then(response => {
           this.loading = false;
           this.tableData = this.pageNum == 1 ? response.data.list:this.tableData.concat(response.data.list)
           this.total = response.data.total
@@ -122,6 +132,16 @@
       next(){
         this.pageNum = this.pageNum + 1;
         this.getList();
+      },
+      showSearch(){
+        this.showSearchVisible = true;
+      },
+      changeTemp(temp){
+        this.pageNum = 1;
+        this.pageSize = 5;
+        this.searchTemp = temp
+        this.getList();
+        this.showSearchVisible = false;
       }
     }
   }

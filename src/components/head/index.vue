@@ -1,13 +1,16 @@
 <template>
   <v-ons-toolbar>
 
-    <div class="center" style="text-align: center">
-      <div class="left" style="position: fixed">
-        <v-ons-toolbar-button @click="toggleSide">
-          <v-ons-icon icon="ion-navicon"></v-ons-icon>
-        </v-ons-toolbar-button>
-      </div>
+    <div class="center" >
       {{title}}
+    </div>
+    <div class="left" >
+      <v-ons-toolbar-button @click="toggleSide">
+        <v-ons-icon icon="ion-navicon"></v-ons-icon>
+      </v-ons-toolbar-button>
+    </div>
+    <div class="right">
+      <slot></slot>
     </div>
   </v-ons-toolbar>
 </template>
