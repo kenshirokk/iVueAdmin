@@ -7,7 +7,6 @@
 
 <script>
   import P1 from './p1'
-  import P2 from './p2'
   import {mapState} from 'vuex'
   import {mapMutations} from 'vuex'
 
@@ -23,7 +22,7 @@
       ...mapState('player', ['pageStack'])
     },
     components: {
-      P1, P2
+      P1
     },
     methods: {
       ...mapMutations('player', ['push', 'empty'])

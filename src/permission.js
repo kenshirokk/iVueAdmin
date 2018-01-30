@@ -17,7 +17,6 @@ router.beforeEach((to, from, next) => {
     } else {
       getInfo().then(response => {
         this.modalVisible = false
-        console.log(response.data.entity)
         store.commit('auth/setLoginUser', response.data.entity);
         next()
       }).catch(() => {
