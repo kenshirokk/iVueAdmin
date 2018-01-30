@@ -14,16 +14,16 @@
       @changestate="state = $event.state"
       threshold-height="-1px;"
       >
-      <span v-show="state === 'initial'"> 下拉刷新...</span>
-      <span v-show="state === 'preaction'"> 松开刷新... </span>
-      <v-ons-progress-circular v-show="state === 'action'" indeterminate></v-ons-progress-circular>
+        <span v-show="state === 'initial'"> 下拉刷新...</span>
+        <span v-show="state === 'preaction'"> 松开刷新... </span>
+        <v-ons-progress-circular v-show="state === 'action'" indeterminate></v-ons-progress-circular>
       </v-ons-pull-hook>
       <v-ons-list>
         <v-ons-list-item  v-for="item in tableData" :key="item.orderId">
           <table style="width: 100%" class="avatar_table">
             <tr >
               <td rowspan="9">
-                <table  cellpadding="0" cellspacing="0" border="1">
+                <table  cellpadding="0" cellspacing="0">
                  <tr>
                    <td> 玩家头像</td>
                  </tr>
@@ -129,9 +129,12 @@
           done();
         });
       },
-      next(){
+      next(done){
         this.pageNum = this.pageNum + 1;
-        this.getList();
+        this.getList(() => {
+          done()
+        });
+
       },
       showSearch(){
         this.showSearchVisible = true;
