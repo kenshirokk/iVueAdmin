@@ -8,8 +8,8 @@
 <script>
   import P1 from './p1'
   import P2 from './p2'
-  import { mapState } from 'vuex'
-  import { mapMutations } from 'vuex'
+  import {mapState} from 'vuex'
+  import {mapMutations} from 'vuex'
 
   export default {
     name: "index",

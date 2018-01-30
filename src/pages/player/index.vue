@@ -1,14 +1,34 @@
 <template>
-    <v-ons-page>
-      <app-head title="玩家管理"></app-head>
-      this is 玩家管理 page
-    </v-ons-page>
+  <v-ons-navigator :page-stack="pageStack">
+    <component v-for="page in pageStack" :is="page" :key="page.name"
+               :page-stack="pageStack"></component>
+  </v-ons-navigator>
 </template>
 
 <script>
-    export default {
-        name: "index"
+  import P1 from './p1'
+  import P2 from './p2'
+  import {mapState} from 'vuex'
+  import {mapMutations} from 'vuex'
+
+  export default {
+    name: "index",
+    created() {
+      this.push(P1)
+    },
+    beforeDestroy() {
+      this.empty()
+    },
+    computed: {
+      ...mapState('player', ['pageStack'])
+    },
+    components: {
+      P1, P2
+    },
+    methods: {
+      ...mapMutations('player', ['push', 'empty'])
     }
+  }
 </script>
 
 <style scoped>

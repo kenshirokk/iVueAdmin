@@ -40,6 +40,28 @@ const mall = {
   }
 }
 
+const player = {
+  namespaced: true,
+  state: {
+    pageStack: [],
+    updateData: '',
+  },
+  mutations: {
+    push(state, page) {
+      state.pageStack.push(page)
+    },
+    back(state) {
+      state.pageStack.pop()
+    },
+    prepareUpdate(state, updateData) {
+      state.updateData = updateData
+    },
+    empty(state) {
+      state.pageStack = []
+    }
+  }
+}
+
 const sysGame = {
   namespaced: true,
   state: {
@@ -101,6 +123,7 @@ export default new Vuex.Store({
     splitter,
     auth,
     mall,
+    player,
     sysGame,
     sysMessage
   },
