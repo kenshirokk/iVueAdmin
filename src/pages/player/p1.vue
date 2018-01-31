@@ -90,7 +90,6 @@
       this.getList()
     },
     watch: {
-      // 如果 `question` 发生改变，这个函数就会运行
       coinVisible: function (newv, oldv) {
         if (newv === false) {
           this.coin = ''

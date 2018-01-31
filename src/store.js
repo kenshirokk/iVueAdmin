@@ -88,7 +88,7 @@ const sysMessage = {
   namespaced: true,
   state: {
     pageStack: [],
-
+    updateData: ''
   },
   mutations: {
     push(state, page) {
@@ -96,6 +96,9 @@ const sysMessage = {
     },
     back(state) {
       state.pageStack.pop()
+    },
+    prepareUpdate(state, updateData) {
+      state.updateData = updateData
     },
     empty(state) {
       state.pageStack = []

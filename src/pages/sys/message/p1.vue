@@ -27,6 +27,7 @@
 </template>
 
 <script>
+  import Bus from '@/bus'
   import {getList, update} from '@/api/bulletin'
   import P2 from './p2'
   import {mapState} from 'vuex'
@@ -48,8 +49,18 @@
     created() {
       this.showProfressBar = true
       this.getList()
+      Bus.$on('refreshSysMessageData', (data) => {
+        for (let d of this.tableData) {
+          if (d.id === data.id) {
+            let index = this.tableData.indexOf(d)
+            this.tableData.splice(index, 1, data)
+            break
+          }
+        }
+      })
     },
     methods: {
+      ...mapMutations('sysMessage', ['push', 'prepareUpdate']),
       getList() {
         getList(this.pageNum, this.pageSize).then(response => {
           this.tableData = response.data.list
@@ -63,6 +74,11 @@
           this.showProfressBar = false
           done()
         })
+      },
+      update(data) {
+        let updateDataTemp = Object.assign({}, data)
+        this.prepareUpdate(updateDataTemp)
+        this.push(P2)
       }
     }
   }

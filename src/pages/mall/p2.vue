@@ -54,6 +54,7 @@
       save() {
         update(this.updateData)
           .then(() => {
+            this.$ons.notification.toast("修改成功", {timeout: 2000})
             Bus.$emit('refreshMallData', this.updateData)
             this.back()
           })
