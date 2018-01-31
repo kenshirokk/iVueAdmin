@@ -31,8 +31,8 @@
           <v-ons-list-item modifier="nodivider" @click="toggleProxy">
             <v-ons-icon icon="md-globe" class="list-item__icon"></v-ons-icon>
             <div class="lh">代理管理
-                <span style="color: darkgray;margin-left: 20px" v-if="showProxy">▼</span>
-                <span style="color: darkgray;margin-left: 20px" v-else >▲</span>
+              <span style="color: darkgray;margin-left: 20px"  v-if="showProxy">▲</span>
+              <span style="color: darkgray;margin-left: 20px"  v-else >▼</span>
             </div>
           </v-ons-list-item>
           <transition name="slide-fade">
@@ -65,8 +65,8 @@
           <v-ons-list-item modifier="nodivider" @click="toggleSys">
             <v-ons-icon icon="md-settings" class="list-item__icon"></v-ons-icon>
             <div class=" lh">系统管理
-              <span style="color: darkgray;margin-left: 20px" v-if="showSys">▼</span>
-              <span style="color: darkgray;margin-left: 20px" v-else >▲</span>
+              <span style="color: darkgray;margin-left: 20px"  v-if="showSys">▲</span>
+              <span style="color: darkgray;margin-left: 20px"  v-else >▼</span>
             </div>
           </v-ons-list-item>
           <transition name="slide-fade">
