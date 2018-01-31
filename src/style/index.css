@@ -25,3 +25,8 @@
 .text-input{
   background-image:none!important;
 }
+
+.btn{
+  border: 1px solid #0076ff;
+  color: #0076ff;
+}
