@@ -122,6 +122,6 @@ const routes = [
 ]
 
 export default new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes // （缩写）相当于 routes: routes
 })
