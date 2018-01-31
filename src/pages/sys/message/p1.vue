@@ -46,17 +46,19 @@
       ...mapState('sysMessage', ['pageStack'])
     },
     created() {
+      this.showProfressBar = true
       this.getList()
     },
     methods: {
       getList() {
         getList(this.pageNum, this.pageSize).then(response => {
           this.tableData = response.data.list
+          this.showProfressBar = false
         })
       },
       getNext(done) {
         this.showProfressBar = true
-        getList(++this.pageNum, this.pageSize).then(response =>{
+        getList(++this.pageNum, this.pageSize).then(response => {
           this.tableData = this.tableData.concat(response.data.list)
           this.showProfressBar = false
           done()

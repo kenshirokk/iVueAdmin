@@ -86,6 +86,7 @@
       }
     },
     created() {
+      this.showProfressBar = true
       this.getList()
     },
     watch: {
@@ -100,6 +101,7 @@
       getList() {
         getList(this.pageNum, this.pageSize, this.userId, this.spreaderID, this.nickname).then(response => {
           this.tableData = response.data.list
+          this.showProfressBar = false
         })
       },
       getNext(done) {
