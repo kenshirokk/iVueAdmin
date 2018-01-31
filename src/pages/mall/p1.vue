@@ -3,27 +3,34 @@
     <app-head title="商城管理"></app-head>
     <v-ons-list>
       <v-ons-list-item v-for="td in tableData" :key="td.id">
-        <v-ons-row vertical-align="center">
-          <v-ons-col width="40%">商品名称</v-ons-col>
-          <v-ons-col width="60%">{{td.itemName}}</v-ons-col>
-        </v-ons-row>
-        <v-ons-row vertical-align="center">
-          <v-ons-col width="40%">商品类型</v-ons-col>
-          <v-ons-col width="60%">{{td.itemType}}</v-ons-col>
-        </v-ons-row>
-        <v-ons-row vertical-align="center">
-          <v-ons-col width="40%">商品价格</v-ons-col>
-          <v-ons-col width="60%">{{td.price}}</v-ons-col>
-        </v-ons-row>
-        <v-ons-row vertical-align="center">
-          <v-ons-col width="40%">商品数量</v-ons-col>
-          <v-ons-col width="60%">{{td.goodsNum}}</v-ons-col>
-        </v-ons-row>
         <v-ons-row>
-          <v-ons-col>
-            <v-ons-button modifier="large" @click="update(td)">修改</v-ons-button>
+          <v-ons-col width="80%" class="app_list_row">
+            <v-ons-row vertical-align="center" >
+              <v-ons-col width="40%">商品名称：</v-ons-col>
+              <v-ons-col width="60%">{{td.itemName}}</v-ons-col>
+            </v-ons-row>
+            <v-ons-row vertical-align="center">
+              <v-ons-col width="40%">商品类型：</v-ons-col>
+              <v-ons-col width="60%">{{td.itemType}}</v-ons-col>
+            </v-ons-row>
+            <v-ons-row vertical-align="center">
+              <v-ons-col width="40%">商品价格：</v-ons-col>
+              <v-ons-col width="60%">{{td.price}}</v-ons-col>
+            </v-ons-row>
+            <v-ons-row vertical-align="center">
+              <v-ons-col width="40%">商品数量：</v-ons-col>
+              <v-ons-col width="60%">{{td.goodsNum}}</v-ons-col>
+            </v-ons-row>
+          </v-ons-col>
+          <v-ons-col width="20%" height="100%">
+            <v-ons-row class="btn_row " style="margin-top: 30%">
+              <v-ons-col  style="text-align: right">
+                <v-ons-button modifier="outline" @click="update(td)" class="btn">修改</v-ons-button>
+              </v-ons-col>
+            </v-ons-row>
           </v-ons-col>
         </v-ons-row>
+
       </v-ons-list-item>
     </v-ons-list>
   </v-ons-page>
@@ -77,5 +84,19 @@
 </script>
 
 <style scoped>
+  .btn {
+    max-width: 60px;
+    font-size: 12px;
+  }
 
+  .app_list_row ons-col{
+    padding: 5px;
+  }
+  .btn_row ons-col{
+    margin: 5px;
+  }
+  .btn_row ons-col ons-button{
+    width: 100%;
+    text-align: center;
+  }
 </style>

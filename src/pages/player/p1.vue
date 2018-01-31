@@ -1,10 +1,18 @@
 <template>
   <v-ons-page :infinite-scroll="getNext">
-    <app-head title="玩家管理"></app-head>
+    <app-head title="玩家管理">
+      <v-ons-toolbar-button @click="showSearch">
+        <v-ons-icon icon="ion-search"></v-ons-icon>
+      </v-ons-toolbar-button>
+      <app-search :temp="this.searchTemp"
+                  :list="[{placeholder:'请输入玩家ID',name:'userId'},{placeholder:'请输入玩家昵称',name:'nickname'},{placeholder:'请输入推荐人ID',name:'spreaderID'}]"
+                  :visible.sync="showSearchVisible"
+                  @change-params="changeTemp"></app-search>
+    </app-head>
     <v-ons-list>
       <v-ons-list-item v-for="td in tableData" :key="td.userID">
 
-        <v-ons-row vertical-align="center">
+        <v-ons-row vertical-align="center" class="app_list_row">
           <v-ons-col width="30%">
             <img :src="td.customFace" style="width: 100px; height: 100px;" class="avatar_80">
           </v-ons-col>
@@ -31,15 +39,15 @@
             </v-ons-row>
           </v-ons-col>
         </v-ons-row>
-        <v-ons-row>
+        <v-ons-row class="btn_row">
           <v-ons-col>
-            <v-ons-button modifier="cta" @click="openCoin(td)" class="btn">充值金币</v-ons-button>
+            <v-ons-button modifier="outline" @click="openCoin(td)" class="btn">充值金币</v-ons-button>
           </v-ons-col>
           <v-ons-col>
-            <v-ons-button modifier="cta" @click="openRoomCard(td)" class="btn">充值房卡</v-ons-button>
+            <v-ons-button modifier="outline" @click="openRoomCard(td)" class="btn">充值房卡</v-ons-button>
           </v-ons-col>
           <v-ons-col>
-            <v-ons-button modifier="cta" @click="openSpreader(td)" class="btn">修改推荐人</v-ons-button>
+            <v-ons-button modifier="outline" @click="openSpreader(td)" class="btn">修改推荐人</v-ons-button>
           </v-ons-col>
         </v-ons-row>
       </v-ons-list-item>
@@ -73,12 +81,15 @@
         pageNum: 1,
         pageSize: 10,
         showProfressBar: true,
-        userId: '',
-        spreaderID: '',
-        nickname: '',
         coinVisible: false,
         roomCardVisible: false,
         spreaderVisible: false,
+        showSearchVisible: false,
+        searchTemp:{
+          userId: '',
+          spreaderID: '',
+          nickname: ''
+        },
         tempUserId: '',
         coin: '',
         roomCard: '',
@@ -97,15 +108,25 @@
       }
     },
     methods: {
+      showSearch(){
+        this.showSearchVisible = true;
+      },
+      changeTemp(temp){
+        this.pageNum = 1;
+        this.pageSize = 10;
+        this.searchTemp = temp
+        this.getList();
+        this.showSearchVisible = false;
+      },
       getList() {
-        getList(this.pageNum, this.pageSize, this.userId, this.spreaderID, this.nickname).then(response => {
+        getList(this.pageNum, this.pageSize, this.searchTemp.userId, this.searchTemp.spreaderID, this.searchTemp.nickname).then(response => {
           this.tableData = response.data.list
           this.showProfressBar = false
         })
       },
       getNext(done) {
         this.showProfressBar = true
-        getList(++this.pageNum, this.pageSize, this.userId, this.spreaderID, this.nickname).then(response => {
+        getList(++this.pageNum, this.pageSize, this.searchTemp.userId, this.searchTemp.spreaderID, this.searchTemp.nickname).then(response => {
           this.tableData = this.tableData.concat(response.data.list)
           this.showProfressBar = false
           done()
@@ -180,6 +201,17 @@
   }
 
   .btn {
-    margin: 6px 3px;
+    font-size: 12px;
+  }
+
+  .app_list_row ons-col{
+    padding: 5px;
+  }
+  .btn_row ons-col{
+    margin: 5px;
+  }
+  .btn_row ons-col ons-button{
+    width: 100%;
+    text-align: center;
   }
 </style>

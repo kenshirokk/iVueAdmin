@@ -3,21 +3,27 @@
     <app-head title="游戏设置"></app-head>
     <v-ons-list>
       <v-ons-list-item v-for="td in tableData" :key="td.id">
-        <v-ons-row vertical-align="center">
-          <v-ons-col width="40%">参数名称</v-ons-col>
-          <v-ons-col width="60%">{{td.paramName}}</v-ons-col>
-        </v-ons-row>
-        <v-ons-row vertical-align="center">
-          <v-ons-col width="40%">参数描述</v-ons-col>
-          <v-ons-col width="60%">{{td.paramDesc}}</v-ons-col>
-        </v-ons-row>
-        <v-ons-row vertical-align="center">
-          <v-ons-col width="40%">参数值</v-ons-col>
-          <v-ons-col width="60%">{{td.paramValue}}</v-ons-col>
-        </v-ons-row>
         <v-ons-row>
-          <v-ons-col>
-            <v-ons-button modifier="large" @click="update(td)">修改</v-ons-button>
+          <v-ons-col width="80%" class="app_list_row">
+            <v-ons-row vertical-align="center">
+              <v-ons-col width="40%">参数名称</v-ons-col>
+              <v-ons-col width="60%">{{td.paramName}}</v-ons-col>
+            </v-ons-row>
+            <v-ons-row vertical-align="center">
+              <v-ons-col width="40%">参数描述</v-ons-col>
+              <v-ons-col width="60%">{{td.paramDesc}}</v-ons-col>
+            </v-ons-row>
+            <v-ons-row vertical-align="center">
+              <v-ons-col width="40%">参数值</v-ons-col>
+              <v-ons-col width="60%">{{td.paramValue}}</v-ons-col>
+            </v-ons-row>
+          </v-ons-col>
+          <v-ons-col width="20%" height="100%">
+            <v-ons-row class="btn_row " style="margin-top: 30%">
+              <v-ons-col>
+                <v-ons-button modifier="outline" @click="update(td)" class="btn">修改</v-ons-button>
+              </v-ons-col>
+            </v-ons-row>
           </v-ons-col>
         </v-ons-row>
       </v-ons-list-item>
@@ -71,5 +77,19 @@
 </script>
 
 <style scoped>
+  .btn {
+    max-width: 60px;
+    font-size: 12px;
+  }
 
+  .app_list_row ons-col{
+    padding: 5px;
+  }
+  .btn_row ons-col{
+    margin: 5px;
+  }
+  .btn_row ons-col ons-button{
+    width: 100%;
+    text-align: center;
+  }
 </style>
