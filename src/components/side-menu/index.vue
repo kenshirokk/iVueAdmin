@@ -30,10 +30,13 @@
 
           <v-ons-list-item modifier="nodivider" @click="toggleProxy">
             <v-ons-icon icon="md-globe" class="list-item__icon"></v-ons-icon>
-            <div class="lh">代理管理</div>
+            <div class="lh">代理管理
+                <span style="color: darkgray;margin-left: 20px" v-if="showProxy">▼</span>
+                <span style="color: darkgray;margin-left: 20px" v-else >▲</span>
+            </div>
           </v-ons-list-item>
           <transition name="slide-fade">
-            <v-ons-list-item @click="openSide = false" modifier="nodivider" v-show="showProxy">
+            <v-ons-list-item @click="openSide = false" modifier="nodivider" v-show="showProxy" class="child_list">
               <v-ons-list modifier="noborder">
                 <v-ons-list-item @click="openSide = false" modifier="nodivider">
                   <router-link :to="'/proxy/create'">创建代理</router-link>
@@ -61,10 +64,13 @@
           </transition>
           <v-ons-list-item modifier="nodivider" @click="toggleSys">
             <v-ons-icon icon="md-settings" class="list-item__icon"></v-ons-icon>
-            <div class=" lh">系统管理</div>
+            <div class=" lh">系统管理
+              <span style="color: darkgray;margin-left: 20px" v-if="showSys">▼</span>
+              <span style="color: darkgray;margin-left: 20px" v-else >▲</span>
+            </div>
           </v-ons-list-item>
           <transition name="slide-fade">
-            <v-ons-list-item modifier="nodivider" v-show="showSys">
+            <v-ons-list-item modifier="nodivider" v-show="showSys" class="child_list">
               <v-ons-list modifier="noborder">
                 <v-ons-list-item @click="openSide = false" tappable modifier="nodivider">
                   <router-link :to="'/sys/message'">系统公告</router-link>
@@ -138,9 +144,20 @@
     text-decoration: none;
     color: rgb(255, 255, 255);
   }
-
+  .list-item__icon{
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    line-height: 12px;
+  }
   .list-item__icon, .lh {
     color: rgb(255, 255, 255);
+  }
+  .child_list{
+    background-color: #1f2d3d!important;
+  }
+  .child_list ons-list{
+    background-color: #1f2d3d!important;
   }
 
   .router-link-active {
@@ -159,17 +176,16 @@
   /* 可以设置不同的进入和离开动画 */
   /* 设置持续时间和动画函数 */
   .slide-fade-enter-active {
-    transition: all .3s ease;
+    transition: opacity .3s;
   }
 
   .slide-fade-leave-active {
-    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: opacity .3s;
   }
 
   .slide-fade-enter, .slide-fade-leave-to
     /* .slide-fade-leave-active for below version 2.1.8 */
   {
-    transform: translateX(10px);
     opacity: 0;
   }
 </style>

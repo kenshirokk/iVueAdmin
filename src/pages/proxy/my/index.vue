@@ -60,20 +60,22 @@
           </v-ons-col>
         </v-ons-row>
         <v-ons-row class="btn_row">
-          <v-ons-col>
+          <v-ons-col >
             <v-ons-button modifier="outline" @click="openGolds(td)" class="btn">充值金币</v-ons-button>
           </v-ons-col>
           <v-ons-col>
             <v-ons-button modifier="outline" @click="openRoomCard(td)" class="btn">充值房卡</v-ons-button>
           </v-ons-col>
-          <v-ons-col>
+          <v-ons-col >
             <v-ons-button modifier="outline" @click="openPassword(td)" class="btn">修改密码</v-ons-button>
           </v-ons-col>
+        </v-ons-row>
+        <v-ons-row class="btn_row">
           <v-ons-col>
             <v-ons-button modifier="outline" v-if="td.disable == 0" @click="disabled(td)" class="btn">禁用</v-ons-button>
             <v-ons-button modifier="outline"  v-else @click="disabled(td)" class="btn">启用</v-ons-button>
           </v-ons-col>
-          <v-ons-col>
+          <v-ons-col >
             <v-ons-button modifier="outline" @click="del(td)" class="btn red_btn">删除</v-ons-button>
           </v-ons-col>
         </v-ons-row>
@@ -288,10 +290,10 @@
     padding: 5px;
   }
   .btn_row ons-col{
-    margin: 5px;
+    margin: 3px;
   }
-  .btn_row ons-col ons-button{
-    width: 100%;
+    .btn_row ons-col ons-button{
+      width: 100%;
     text-align: center;
   }
   .red_btn{
