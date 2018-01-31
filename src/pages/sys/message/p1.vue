@@ -4,7 +4,7 @@
     <v-ons-list>
       <v-ons-list-item v-for="td in tableData" :key="td.id">
         <v-ons-row>
-          <v-ons-col width="80%" class="app_list_row">
+          <v-ons-col width="75%" class="app_list_row">
             <v-ons-row vertical-align="center">
               <v-ons-col width="40%">公告标题</v-ons-col>
               <v-ons-col width="60%">{{td.title}}</v-ons-col>
@@ -18,7 +18,7 @@
               <v-ons-col width="60%">{{td.desc}}</v-ons-col>
             </v-ons-row>
           </v-ons-col>
-          <v-ons-col width="20%" height="100%">
+          <v-ons-col width="25%" height="100%">
             <v-ons-row class="btn_row " style="margin-top: 30%">
               <v-ons-col>
                 <v-ons-button modifier="outline" @click="update(td)" class="btn">编辑</v-ons-button>
