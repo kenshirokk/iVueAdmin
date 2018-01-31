@@ -86,10 +86,10 @@
       }
     },
     created() {
+      this.showProfressBar = true
       this.getList()
     },
     watch: {
-      // 如果 `question` 发生改变，这个函数就会运行
       coinVisible: function (newv, oldv) {
         if (newv === false) {
           this.coin = ''
@@ -100,6 +100,7 @@
       getList() {
         getList(this.pageNum, this.pageSize, this.userId, this.spreaderID, this.nickname).then(response => {
           this.tableData = response.data.list
+          this.showProfressBar = false
         })
       },
       getNext(done) {
