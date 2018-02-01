@@ -8,7 +8,7 @@
         <v-ons-back-button>返回</v-ons-back-button>
       </div>
       <div class="right">
-        <v-ons-toolbar-button @click="save">
+        <v-ons-toolbar-button @click="save" :disabled="error">
           <v-ons-icon icon="fa-check"></v-ons-icon>
           保存
         </v-ons-toolbar-button>
@@ -23,6 +23,7 @@
         <div class="center">
           <v-ons-input v-model="updateData.price">
           </v-ons-input>
+          <span v-show="priceError" class="list-item__subtitle" style="color: red;">商品价格有误</span>
         </div>
       </v-ons-list-item>
       <v-ons-list-header>
@@ -32,6 +33,7 @@
         <div class="center">
           <v-ons-input v-model="updateData.goodsNum">
           </v-ons-input>
+          <span v-show="goodsNumError" class="list-item__subtitle" style="color: red;">商品数量有误</span>
         </div>
       </v-ons-list-item>
     </v-ons-list>
@@ -46,8 +48,33 @@
 
   export default {
     name: "p2",
+    data() {
+      return {
+        priceError: false,
+        goodsNumError: false,
+      }
+    },
     computed: {
-      ...mapState('mall', ['pageStack', 'updateData'])
+      ...mapState('mall', ['pageStack', 'updateData']),
+      error: function() {
+        return this.priceError || this.goodsNumError
+      }
+    },
+    watch: {
+      'updateData.price': function(newv, oldv) {
+        if (!newv.trim() || !Number.isInteger(Number(newv)) || newv.indexOf('.') !== -1) {
+          this.priceError = true
+        } else {
+          this.priceError = false
+        }
+      },
+      'updateData.goodsNum': function(newv, oldv) {
+        if (!newv.trim() || !Number.isInteger(Number(newv)) || newv.indexOf('.') !== -1) {
+          this.goodsNumError = true
+        } else {
+          this.goodsNumError = false
+        }
+      }
     },
     methods: {
       ...mapMutations('mall', ['back']),
