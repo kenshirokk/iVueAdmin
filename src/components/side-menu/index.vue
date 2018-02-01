@@ -13,7 +13,7 @@
           </v-ons-list-item>
           <v-ons-list-item @click="openSide = false" modifier="nodivider">
             <div class="left2">
-              <v-ons-icon icon="md-layers" class="list-item__icon"></v-ons-icon>
+              <v-ons-icon icon="md-home" class="list-item__icon"></v-ons-icon>
             </div>
             <router-link :to="'/index'">
               首页
@@ -87,8 +87,13 @@
             <div class="center">
               <v-ons-button modifier="cta" style="margin: 6px 0" @click="loginOutUser">
                 <v-ons-icon icon="fa-sign-out"></v-ons-icon>
-                退出系统
+                退出
               </v-ons-button>
+              <v-ons-button modifier="cta" style="margin: 6px 10px" @click="toShare">
+                <v-ons-icon icon="fa-share-alt"></v-ons-icon>
+                分享
+              </v-ons-button>
+
             </div>
           </v-ons-list-item>
         </v-ons-list>
@@ -110,7 +115,8 @@
         avatar: '',
         nickname: '',
         showProxy: false,
-        showSys: false
+        showSys: false,
+        staticUrl: process.env.STATIC_URL,
       }
     },
     created() {
@@ -134,6 +140,10 @@
           this.loginOut();
           this.$router.push('/login')
        })
+      },
+      toShare(){
+        let loginUser = this.getLoginUser()
+        window.location.href = this.staticUrl + '/' + loginUser.qrcode;
       }
     }
   }
