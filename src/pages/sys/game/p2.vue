@@ -8,7 +8,7 @@
         <v-ons-back-button>返回</v-ons-back-button>
       </div>
       <div class="right">
-        <v-ons-toolbar-button @click="save">
+        <v-ons-toolbar-button @click="save" :disabled="error">
           <v-ons-icon icon="fa-check"></v-ons-icon>
           保存
         </v-ons-toolbar-button>
@@ -39,6 +39,7 @@
         <div class="center">
           <v-ons-input v-model="updateData.paramValue">
           </v-ons-input>
+          <span v-show="error" class="list-item__subtitle" style="color: red;">参数值不能为空</span>
         </div>
       </v-ons-list-item>
     </v-ons-list>
@@ -53,8 +54,22 @@
 
   export default {
     name: "p2",
+    data() {
+      return {
+        error: false
+      }
+    },
     computed: {
       ...mapState('sysGame', ['pageStack', 'updateData'])
+    },
+    watch: {
+      'updateData.paramValue': function(newv, oldv) {
+        if (!newv.trim()) {
+          this.error = true
+        } else {
+          this.error = false
+        }
+      }
     },
     created() {
     },

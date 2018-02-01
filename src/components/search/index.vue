@@ -1,7 +1,7 @@
 <template>
   <v-ons-dialog cancelable :visible.sync="visible"  @posthide="close()">
     <v-ons-list>
-      <v-ons-list-item v-for="item in list">
+      <v-ons-list-item v-for="item in list" :key="item.name">
         <v-ons-input :placeholder="item.placeholder" :name="item.name" v-model="temp[item.name]"></v-ons-input>
       </v-ons-list-item>
       <v-ons-list-item   >
