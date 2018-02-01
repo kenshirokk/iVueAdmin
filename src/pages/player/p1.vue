@@ -56,16 +56,16 @@
 
     <v-ons-alert-dialog cancelable :visible.sync="coinVisible" title="输入充值金币数量"
                         :footer="{确定: updateCoin}">
-      <v-ons-input placeholder="充值金币数量" v-model="coin" modifier="underbar" type="number"></v-ons-input>
+      <v-ons-input placeholder="充值金币数量" v-model.number="coin" modifier="underbar" type="number"></v-ons-input>
     </v-ons-alert-dialog>
 
     <v-ons-alert-dialog cancelable :visible.sync="roomCardVisible" title="输入充值房卡数量"
                         :footer="{确定: updateRoomCard}">
-      <v-ons-input placeholder="充值房卡数量" v-model="roomCard" modifier="underbar" type="number"></v-ons-input>
+      <v-ons-input placeholder="充值房卡数量" v-model.number="roomCard" modifier="underbar" type="number"></v-ons-input>
     </v-ons-alert-dialog>
     <v-ons-alert-dialog cancelable :visible.sync="spreaderVisible" title="输入推荐人ID"
                         :footer="{确定: updateSpreader}">
-      <v-ons-input placeholder="推荐人ID" v-model="spreader" modifier="underbar" type="number"></v-ons-input>
+      <v-ons-input placeholder="推荐人ID" v-model.number="spreader" modifier="underbar" type="number"></v-ons-input>
     </v-ons-alert-dialog>
   </v-ons-page>
 </template>
@@ -145,7 +145,11 @@
         this.tempUserId = data.userID
       },
       updateCoin() {
-        var params = {userId: this.tempUserId, quantity: this.coin}
+        if (!Number.isInteger(Number(this.coin))) {
+          this.$ons.notification.toast("金币输入有误", {timeout: 1000})
+          return
+        }
+        let params = {userId: this.tempUserId, quantity: this.coin}
         updateCoin(params).then(() => {
 
           for (let u of this.tableData) {
@@ -160,7 +164,11 @@
         })
       },
       updateRoomCard() {
-        var params = {userId: this.tempUserId, quantity: this.roomCard}
+        if (!Number.isInteger(Number(this.roomCard))) {
+          this.$ons.notification.toast("房卡输入有误", {timeout: 1000})
+          return
+        }
+        let params = {userId: this.tempUserId, quantity: this.roomCard}
         updateRoomCard(params).then(() => {
           for (let u of this.tableData) {
             if (u.userID === this.tempUserId) {
@@ -174,7 +182,11 @@
         })
       },
       updateSpreader() {
-        var params = {userId: this.tempUserId, spreaderID: this.spreader}
+        if (!Number.isInteger(Number(this.spreader))) {
+          this.$ons.notification.toast("推荐人ID输入有误", {timeout: 1000})
+          return
+        }
+        let params = {userId: this.tempUserId, spreaderID: this.spreader}
         updateSpreader(params).then(() => {
           for (let u of this.tableData) {
             if (u.userID === this.tempUserId) {
