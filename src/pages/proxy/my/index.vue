@@ -266,7 +266,10 @@
         if (this.validatePassword()) {
           var params = {agencyId:this.temp.id,password:this.temp.password}
           this.passwordVisible = false;
-          this.$ons.notification.toast("修改成功", {timeout: 2000})
+          updatePwd(params).then(() => {
+            this.$ons.notification.toast("修改成功", {timeout: 2000})
+          })
+
         }
       }
     }

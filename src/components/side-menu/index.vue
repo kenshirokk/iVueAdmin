@@ -19,7 +19,7 @@
               首页
             </router-link>
           </v-ons-list-item>
-          <v-ons-list-item @click="openSide = false" modifier="nodivider">
+          <v-ons-list-item @click="openSide = false" modifier="nodivider" v-if="role == 1">
             <v-ons-icon icon="md-shopping-cart" class="list-item__icon"></v-ons-icon>
             <router-link :to="'/mall'">商城管理</router-link>
           </v-ons-list-item>
@@ -53,23 +53,23 @@
                 <v-ons-list-item @click="openSide = false" modifier="nodivider">
                   <router-link :to="'/proxy/performance'">业绩查询</router-link>
                 </v-ons-list-item>
-                <v-ons-list-item @click="openSide = false" modifier="nodivider">
+                <v-ons-list-item @click="openSide = false" modifier="nodivider" v-if="role == 1">
                   <router-link :to="'/proxy/drawMoney'">提现审批</router-link>
                 </v-ons-list-item>
-                <v-ons-list-item @click="openSide = false" modifier="nodivider">
+                <v-ons-list-item @click="openSide = false" modifier="nodivider" v-if="role != 1">
                   <router-link :to="'/proxy/apply'">提现申请</router-link>
                 </v-ons-list-item>
               </v-ons-list>
             </v-ons-list-item>
           </transition>
-          <v-ons-list-item modifier="nodivider" @click="toggleSys">
+          <v-ons-list-item modifier="nodivider" @click="toggleSys" v-if="role == 1">
             <v-ons-icon icon="md-settings" class="list-item__icon"></v-ons-icon>
             <div class=" lh">系统管理
               <span style="color: darkgray;margin-left: 20px;font-size: 10px"  v-if="showSys">▲</span>
               <span style="color: darkgray;margin-left: 20px;font-size: 10px"  v-else >▼</span>
             </div>
           </v-ons-list-item>
-          <transition name="slide-fade">
+          <transition name="slide-fade" v-if="role == 1">
             <v-ons-list-item modifier="nodivider" v-show="showSys" class="child_list">
               <v-ons-list modifier="noborder">
                 <v-ons-list-item @click="openSide = false" tappable modifier="nodivider">
@@ -114,6 +114,7 @@
         openSide: false,
         avatar: '',
         nickname: '',
+        role: '',
         showProxy: false,
         showSys: false,
         staticUrl: process.env.STATIC_URL,
@@ -125,6 +126,7 @@
       let loginUser = this.getLoginUser()
       this.avatar = loginUser.avatar
       this.nickname = loginUser.nickname
+      this.role = loginUser.agencyType;
     },
     methods: {
       ...mapGetters(['getLoginUser']),
