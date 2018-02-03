@@ -30,12 +30,24 @@
               <v-ons-col class="w60">{{td.spreaderID}}</v-ons-col>
             </v-ons-row>
             <v-ons-row>
+              <v-ons-col class="w40">推荐人昵称</v-ons-col>
+              <v-ons-col class="w60">{{td.agencyNickname}}</v-ons-col>
+            </v-ons-row>
+            <v-ons-row>
               <v-ons-col class="w40">金币</v-ons-col>
               <v-ons-col class="w60">{{td.score}}</v-ons-col>
             </v-ons-row>
             <v-ons-row>
               <v-ons-col class="w40">房卡</v-ons-col>
               <v-ons-col class="w60">{{td.insureScore}}</v-ons-col>
+            </v-ons-row>
+            <v-ons-row>
+              <v-ons-col class="w40">注册时间</v-ons-col>
+              <v-ons-col class="w60">{{$format.dateFormat(td.insureScore)}}</v-ons-col>
+            </v-ons-row>
+            <v-ons-row>
+              <v-ons-col class="w40">最后登录时间</v-ons-col>
+              <v-ons-col class="w60">{{$format.dateFormat(td.insureScore)}}</v-ons-col>
             </v-ons-row>
           </v-ons-col>
         </v-ons-row>

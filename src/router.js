@@ -19,6 +19,8 @@ import Apply from './pages/proxy/draw-money/apply'
 import Message from './pages/sys/message'
 import GameSetup from './pages/sys/game'
 
+import Password from './pages/password'
+
 import P404 from './pages/404'
 
 
@@ -108,6 +110,16 @@ const routes = [
       {
         path: 'game',
         component: GameSetup
+      }
+    ]
+  },
+  {
+    path: '/password',
+    component: Main,
+    children: [
+      {
+        path: '',
+        component: Password
       }
     ]
   },

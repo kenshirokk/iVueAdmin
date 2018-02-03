@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
 
-export function getSellRecordVO(pageNum, pageSize,directAgencyId) {
+export function getSellRecordVO(pageNum, pageSize,directAgencyId,directPlayerId) {
   return request({
-    url: '/agency/getSellRecordVO?pageNum=' + pageNum + '&pageSize=' + pageSize+ '&directAgencyId=' + directAgencyId,
+    url: '/agency/getSellRecordVO?pageNum=' + pageNum + '&pageSize=' + pageSize+ '&directAgencyId=' + directAgencyId+ '&directPlayerId=' + directPlayerId,
     method: 'GET'
   })
 }

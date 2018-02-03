@@ -48,7 +48,7 @@
                   <router-link :to="'/proxy/account'">流水查询</router-link>
                 </v-ons-list-item>
                 <v-ons-list-item @click="openSide = false" modifier="nodivider">
-                  <router-link :to="'/proxy/sell'">出售记录</router-link>
+                  <router-link :to="'/proxy/sell'">充值记录</router-link>
                 </v-ons-list-item>
                 <v-ons-list-item @click="openSide = false" modifier="nodivider">
                   <router-link :to="'/proxy/performance'">业绩查询</router-link>
@@ -82,6 +82,10 @@
             </v-ons-list-item>
           </transition>
         </v-ons-list>
+        <v-ons-list-item @click="openSide = false" modifier="nodivider">
+          <v-ons-icon icon="fa-lock" class="list-item__icon"></v-ons-icon>
+          <router-link :to="'/password'">修改密码</router-link>
+        </v-ons-list-item>
         <v-ons-list modifier="noborder">
           <v-ons-list-item modifier="nodivider">
             <div class="center">

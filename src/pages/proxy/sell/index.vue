@@ -1,11 +1,11 @@
 <template>
     <v-ons-page :infinite-scroll="next">
-      <app-head title="出售记录">
+      <app-head title="充值记录">
         <v-ons-toolbar-button @click="showSearch">
           <v-ons-icon icon="ion-search"></v-ons-icon>
         </v-ons-toolbar-button>
         <app-search :temp="this.searchTemp"
-                    :list="[{placeholder:'请输入代理ID',name:'agencyId'}]"
+                    :list="[{placeholder:'请输入玩家ID',name:'playerId'},{placeholder:'请输入代理ID',name:'agencyId'}]"
                     :visible.sync="showSearchVisible"
                     @change-params="changeTemp"></app-search>
       </app-head>
@@ -92,6 +92,7 @@
         loading: false,
         searchTemp:{
           agencyId: '',
+          playerId: '',
         } ,
         userAvatar: '',
         showUserAvatar:false,
@@ -109,7 +110,7 @@
       },
       getList(done) {
         this.loading = true;
-        getSellRecordVO(this.pageNum, this.pageSize,this.searchTemp.agencyId).then(response => {
+        getSellRecordVO(this.pageNum, this.pageSize,this.searchTemp.agencyId,this.searchTemp.playerId).then(response => {
           this.loading = false;
           this.tableData = this.pageNum == 1 ? response.data.list:this.tableData.concat(response.data.list)
           this.total = response.data.total
