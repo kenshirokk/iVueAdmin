@@ -14,7 +14,7 @@
             </v-ons-list-item>
             <v-ons-list-item>
               <div class="center">
-                <v-ons-input placeholder="请输入里面" class="input" type="password" v-model="password">
+                <v-ons-input placeholder="请输入密码" class="input" type="password" v-model="password">
                 </v-ons-input>
               </div>
             </v-ons-list-item>
