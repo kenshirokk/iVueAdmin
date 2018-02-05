@@ -15,6 +15,8 @@ import Sell from './pages/proxy/sell'
 import Performance from './pages/proxy/performance'
 import DrawMoney from './pages/proxy/draw-money'
 import Apply from './pages/proxy/draw-money/apply'
+import PerformanceDetail from './pages/proxy/performance/performanceDetail'
+import AccountDetail from './pages/proxy/account/accountDetail'
 
 import Message from './pages/sys/message'
 import GameSetup from './pages/sys/game'
@@ -96,6 +98,18 @@ const routes = [
       {
         path: 'apply',
         component: Apply
+      },
+      {
+        path: '/performance/detail/:year/:month',
+        name: 'performanceDetail',
+        component: PerformanceDetail,
+        props: true,
+      },
+      {
+        path: '/account/detail/:year/:month',
+        name: 'accountDetail',
+        component: AccountDetail,
+        props: true,
       }
     ]
   },

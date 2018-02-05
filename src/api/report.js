@@ -23,3 +23,17 @@ export function getPerformanceVO(year) {
     method: 'GET'
   })
 }
+
+export function getPerformanceVODetail(pageNum, pageSize,year,month,userId) {
+  return request({
+    url: '/agency/getPerformanceVODetail?pageNum=' + pageNum + '&pageSize=' + pageSize+ '&year=' + year+ '&month=' + month+ '&userId=' + userId,
+    method: 'GET'
+  })
+}
+
+export function getMoneyFlowVODetail(pageNum, pageSize,year,month,userId) {
+  return request({
+    url: '/agency/getMoneyFlowVODetail?pageNum=' + pageNum + '&pageSize=' + pageSize+ '&year=' + year+ '&month=' + month+ '&UserId=' + userId,
+    method: 'GET'
+  })
+}

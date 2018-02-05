@@ -12,20 +12,28 @@
       </v-ons-pull-hook>
       <v-ons-list>
         <v-ons-list-item >
-          <div style="width: 50%">
+          <div style="width: 25%">
             月份
           </div>
           <div style="width: 50%">
             金额
           </div>
+          <div style="width: 25%">
+            操作
+          </div>
         </v-ons-list-item>
 
         <v-ons-list-item  v-for="item in tableData" :key="item.month">
-          <div style="width: 50%">
+          <div style="width: 25%">
             {{item.month}}月
           </div>
           <div style="width: 50%">
             {{item.money}}
+          </div>
+          <div  style="width: 25%">
+            <router-link :to="'/account/detail/'+year+'/'+item.month" >
+              <v-ons-button modifier="outline"  class="btn">详情</v-ons-button>
+            </router-link>
           </div>
         </v-ons-list-item>
       </v-ons-list>
@@ -40,7 +48,8 @@
       return {
         tableData: [],
         loading: false,
-        state: 'initial'
+        state: 'initial',
+        year:''
       }
     },
     created() {
@@ -49,7 +58,8 @@
     methods: {
       getList(done) {
         this.loading = true;
-        getMoneyFlowVO(new Date().getFullYear()).then(response => {
+        this.year = new Date().getFullYear();
+        getMoneyFlowVO(this.year).then(response => {
           this.loading = false;
           this.tableData = response.data.list
           if(done){
@@ -62,5 +72,8 @@
 </script>
 
 <style scoped>
-
+  .btn {
+    max-width: 60px;
+    font-size: 12px;
+  }
 </style>
