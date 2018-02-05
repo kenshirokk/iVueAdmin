@@ -44,7 +44,7 @@
                 <v-ons-list-item @click="openSide = false" modifier="nodivider">
                   <router-link :to="'/proxy/my'">我的代理</router-link>
                 </v-ons-list-item>
-                <v-ons-list-item @click="openSide = false" modifier="nodivider">
+                <v-ons-list-item @click="openSide = false" modifier="nodivider" v-if="role < 3">
                   <router-link :to="'/proxy/account'">流水查询</router-link>
                 </v-ons-list-item>
                 <v-ons-list-item @click="openSide = false" modifier="nodivider">
