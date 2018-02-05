@@ -34,7 +34,7 @@
         <v-ons-col>在线玩家数量：</v-ons-col>
         <v-ons-col>{{personalInfo.onlineUserCount}}</v-ons-col>
       </v-ons-row>
-      <v-ons-row v-if="userinfo.agencyType == 1">
+      <v-ons-row v-if="userinfo.agencyType < 3">
         <v-ons-col>平台充值总收入：</v-ons-col>
         <v-ons-col>{{personalInfo.totalIncome}}</v-ons-col>
       </v-ons-row>
