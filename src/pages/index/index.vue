@@ -48,11 +48,11 @@
       </v-ons-row>
       <v-ons-row v-if="userinfo.agencyType > 1">
         <v-ons-col>金币余额数量：</v-ons-col>
-        <v-ons-col>{{personalInfo.coin}}</v-ons-col>
+        <v-ons-col>{{userinfo.coin}}</v-ons-col>
       </v-ons-row>
       <v-ons-row v-if="userinfo.agencyType > 1">
         <v-ons-col>房卡余额数量：</v-ons-col>
-        <v-ons-col>{{personalInfo.roomCard}}</v-ons-col>
+        <v-ons-col>{{userinfo.roomCard}}</v-ons-col>
       </v-ons-row>
     </v-ons-card>
     <v-ons-card class="app_list_row">
