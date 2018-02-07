@@ -59,7 +59,10 @@
             </tr>
             <tr>
               <td>充值类型：</td>
-              <td>{{item.getType}}</td>
+              <td>
+                <span v-if="scope.row.getType == 1">房卡</span>
+                <span v-else>无</span>
+              </td>
             </tr>
             <tr>
               <td>充值数量：</td>
