@@ -43,11 +43,11 @@
             </v-ons-row>
             <v-ons-row>
               <v-ons-col class="w40">注册时间</v-ons-col>
-              <v-ons-col class="w60">{{$format.dateFormat(td.insureScore)}}</v-ons-col>
+              <v-ons-col class="w60">{{$format.dateFormat(td.registerDate)}}</v-ons-col>
             </v-ons-row>
             <v-ons-row>
               <v-ons-col class="w40">最后登录时间</v-ons-col>
-              <v-ons-col class="w60">{{$format.dateFormat(td.insureScore)}}</v-ons-col>
+              <v-ons-col class="w60">{{$format.dateFormat(td.lastLogonDate)}}</v-ons-col>
             </v-ons-row>
           </v-ons-col>
         </v-ons-row>
