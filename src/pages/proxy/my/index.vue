@@ -60,22 +60,22 @@
           </v-ons-col>
         </v-ons-row>
         <v-ons-row class="btn_row">
-          <v-ons-col >
+          <v-ons-col>
             <v-ons-button modifier="outline" @click="openGolds(td)" class="btn">充值金币</v-ons-button>
           </v-ons-col>
           <v-ons-col>
             <v-ons-button modifier="outline" @click="openRoomCard(td)" class="btn">充值房卡</v-ons-button>
           </v-ons-col>
-          <v-ons-col >
+          <v-ons-col v-if="loginUserAgencyType == 1">
             <v-ons-button modifier="outline" @click="openPassword(td)" class="btn">修改密码</v-ons-button>
           </v-ons-col>
         </v-ons-row>
-        <v-ons-row class="btn_row">
+        <v-ons-row class="btn_row" v-if="loginUserAgencyType == 1">
           <v-ons-col>
             <v-ons-button modifier="outline" v-if="td.disable == 0" @click="disabled(td)" class="btn">禁用</v-ons-button>
-            <v-ons-button modifier="outline"  v-else @click="disabled(td)" class="btn">启用</v-ons-button>
+            <v-ons-button modifier="outline" v-else @click="disabled(td)" class="btn">启用</v-ons-button>
           </v-ons-col>
-          <v-ons-col >
+          <v-ons-col>
             <v-ons-button modifier="outline" @click="del(td)" class="btn red_btn">删除</v-ons-button>
           </v-ons-col>
         </v-ons-row>
@@ -101,9 +101,12 @@
 </template>
 
 <script>
-  import { getList,updateRoomCard,updateCoin,updateSpreader,del,disabled,updatePwd} from '@/api/agency'
+  import {getList, updateRoomCard, updateCoin, updateSpreader, del, disabled, updatePwd} from '@/api/agency'
   import Vue from 'vue'
   import moment from 'moment/moment'
+  import {getToken} from '@/utils/auth'
+  import {getInfo} from '@/api/login'
+
   export default {
     name: 'manage',
     data() {
@@ -114,50 +117,54 @@
         tableData: [],
         loading: false,
         showSearchVisible: false,
-        searchTemp:{
+        loginUserAgencyType: '',
+        searchTemp: {
           agencyId: '',
           parentId: '',
           nickname: ''
         },
         userAvatar: '',
-        showUserAvatar:false,
+        showUserAvatar: false,
         coinVisible: false,
         roomCardVisible: false,
         passwordVisible: false,
         showProfressBar: false,
         temp: {
-          id:'',
-          password:'',
-          password2:'',
-          coin:'',
-          roomCard:''
+          id: '',
+          password: '',
+          password2: '',
+          coin: '',
+          roomCard: ''
         },
         rules: {
           password: [
-            { required: true, message: '请输入密码', trigger: 'change' }
+            {required: true, message: '请输入密码', trigger: 'change'}
           ],
           password2: [
-            { required: true, message: '请输入确认密码', trigger: 'change' },
-            { validator: this.validatePassword, trigger: 'blur' }
+            {required: true, message: '请输入确认密码', trigger: 'change'},
+            {validator: this.validatePassword, trigger: 'blur'}
           ]
         }
       }
     },
     created() {
       this.getList()
+      getInfo(getToken).then(response =>{
+        this.loginUserAgencyType = response.data.entity.agencyType
+      })
     },
     methods: {
-      showSearch(){
+      showSearch() {
         this.showSearchVisible = true;
       },
-      changeTemp(temp){
+      changeTemp(temp) {
         this.pageNum = 1;
         this.pageSize = 10;
         this.searchTemp = temp
         this.getList();
         this.showSearchVisible = false;
       },
-      dateFormat:function(row, column) {
+      dateFormat: function (row, column) {
         var date = row[column.property];
         if (date == undefined) {
           return "";
@@ -170,11 +177,11 @@
       },
       getList(back) {
         this.loading = true;
-        getList(this.pageNum, this.pageSize,this.searchTemp.agencyId,this.searchTemp.parentId,this.searchTemp.nickname).then(response => {
+        getList(this.pageNum, this.pageSize, this.searchTemp.agencyId, this.searchTemp.parentId, this.searchTemp.nickname).then(response => {
           this.loading = false;
-          this.tableData = this.pageNum == 1 ? response.data.list:this.tableData.concat(response.data.list)
+          this.tableData = this.pageNum == 1 ? response.data.list : this.tableData.concat(response.data.list)
           this.total = response.data.total
-          if(back){
+          if (back) {
             back();
           }
         })
@@ -190,12 +197,12 @@
         this.temp.id = row.id;
         this.coinVisible = true;
       },
-      updateCoin(){
-        var params = {agencyId:this.temp.id ,quantity: this.temp.coin }
+      updateCoin() {
+        var params = {agencyId: this.temp.id, quantity: this.temp.coin}
         updateCoin(params).then(() => {
           for (let u of this.tableData) {
             if (u.id === this.temp.id) {
-              u.coin = u.coin?(parseInt(u.coin)+parseInt(this.temp.coin)) :this.temp.coin
+              u.coin = u.coin ? (parseInt(u.coin) + parseInt(this.temp.coin)) : this.temp.coin
               break
             }
           }
@@ -203,16 +210,16 @@
           this.coinVisible = false
         })
       },
-      openRoomCard(row){
+      openRoomCard(row) {
         this.temp.id = row.id;
         this.roomCardVisible = true;
       },
       updateRoomCard() {
-        var params = {agencyId:this.temp.id ,quantity: this.temp.roomCard}
+        var params = {agencyId: this.temp.id, quantity: this.temp.roomCard}
         updateRoomCard(params).then(() => {
           for (let u of this.tableData) {
             if (u.id === this.temp.id) {
-              u.roomCard = u.roomCard?(parseInt(u.roomCard)+parseInt(this.temp.roomCard)) :this.temp.roomCard
+              u.roomCard = u.roomCard ? (parseInt(u.roomCard) + parseInt(this.temp.roomCard)) : this.temp.roomCard
               break
             }
           }
@@ -221,11 +228,11 @@
         })
       },
       disabled(row) {
-        var params = {agencyId:row.id}
-        if(row.isLoading){
+        var params = {agencyId: row.id}
+        if (row.isLoading) {
           row.isLoading = true;
-        }else{
-          Vue.set(row,'isLoading',true);
+        } else {
+          Vue.set(row, 'isLoading', true);
         }
         disabled(params).then(() => {
           row.disable = row.disable == 0 ? 666 : 0;
@@ -233,12 +240,12 @@
         })
       },
       del(row) {
-        this.$ons.notification.confirm('确认删除吗?',{
-          buttonLabels: ['取消','确定'],
-          title:'提示'
+        this.$ons.notification.confirm('确认删除吗?', {
+          buttonLabels: ['取消', '确定'],
+          title: '提示'
         }).then((btnId) => {
-          if(btnId == 1){
-            var params = {agencyId:row.id}
+          if (btnId == 1) {
+            var params = {agencyId: row.id}
             del(params).then(response => {
               this.getList();
               this.$ons.notification.toast("删除成功", {timeout: 2000})
@@ -246,25 +253,26 @@
           }
         })
       },
-      openPassword(row){
+      openPassword(row) {
         this.passwordVisible = true;
-        try{
+        try {
           this.temp.password = ''
           this.temp.password2 = '';
-        }catch (e){}
+        } catch (e) {
+        }
         this.temp.id = row.id;
       },
       validatePassword() {
-        if(this.temp.password == this.temp.password2){
+        if (this.temp.password == this.temp.password2) {
           return true;
-        }else{
+        } else {
           this.$ons.notification.toast("两次密码不一致", {timeout: 2000})
           return false;
         }
       },
-      updatePwd(){
+      updatePwd() {
         if (this.validatePassword()) {
-          var params = {agencyId:this.temp.id,password:this.temp.password}
+          var params = {agencyId: this.temp.id, password: this.temp.password}
           this.passwordVisible = false;
           updatePwd(params).then(() => {
             this.$ons.notification.toast("修改成功", {timeout: 2000})
@@ -289,17 +297,20 @@
     font-size: 12px;
   }
 
-  .app_list_row ons-col{
+  .app_list_row ons-col {
     padding: 5px;
   }
-  .btn_row ons-col{
+
+  .btn_row ons-col {
     margin: 3px;
   }
-    .btn_row ons-col ons-button{
-      width: 100%;
+
+  .btn_row ons-col ons-button {
+    width: 100%;
     text-align: center;
   }
-  .red_btn{
+
+  .red_btn {
     border: 1px solid #f56c6c;
     color: #f56c6c;
   }
