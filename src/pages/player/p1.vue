@@ -58,8 +58,8 @@
           <v-ons-col>
             <v-ons-button modifier="outline" @click="openRoomCard(td)" class="btn">充值房卡</v-ons-button>
           </v-ons-col>
-          <v-ons-col>
-            <v-ons-button modifier="outline" @click="openSpreader(td)" class="btn" v-if="role == 1">修改推荐人</v-ons-button>
+          <v-ons-col v-if="role == 1">
+            <v-ons-button modifier="outline" @click="openSpreader(td)" class="btn" >修改推荐人</v-ons-button>
           </v-ons-col>
         </v-ons-row>
       </v-ons-list-item>
