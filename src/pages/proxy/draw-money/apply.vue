@@ -9,7 +9,11 @@
               <span style="color: tomato;font-size: 16px;font-weight: bold">{{balance}}</span>（元）
             </v-ons-list-item>
             <v-ons-list-item >
-              <v-ons-input placeholder="请输入提现金额" v-model="temp.money"></v-ons-input>
+              <v-ons-select v-model="temp.money" style="width: 100%;">
+                <option v-for="item in options" :value="item.value">
+                  {{ item.value }}
+                </option>
+              </v-ons-select>
             </v-ons-list-item>
             <v-ons-list-item >
               <v-ons-input  placeholder="请输入微信号"  v-model="temp.weixin"></v-ons-input>
@@ -49,8 +53,22 @@
       return{
         modalVisible: false,
         balance: 0,
+        options: [
+          {
+            value: 200
+          },
+          {
+            value: 500
+          },
+          {
+            value: 1000
+          },
+          {
+            value: 2000
+          }
+        ],
         temp: {
-          money:'',
+          money:200,
           weixin:'',
           alipay:'',
           bankno:''

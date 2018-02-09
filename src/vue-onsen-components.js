@@ -34,7 +34,7 @@ export { default as VOnsPullHook } from 'vue-onsenui/esm/components/VOnsPullHook
 export { default as VOnsRow } from 'vue-onsenui/esm/components/VOnsRow'
 // export { default as VOnsSearchInput } from 'vue-onsenui/esm/components/VOnsSearchInput'
 // export { default as VOnsSegment } from 'vue-onsenui/esm/components/VOnsSegment'
-// export { default as VOnsSelect } from 'vue-onsenui/esm/components/VOnsSelect'
+export { default as VOnsSelect } from 'vue-onsenui/esm/components/VOnsSelect'
 // export { default as VOnsSpeedDial } from 'vue-onsenui/esm/components/VOnsSpeedDial'
 // export { default as VOnsSpeedDialItem } from 'vue-onsenui/esm/components/VOnsSpeedDialItem'
 export { default as VOnsSplitter } from 'vue-onsenui/esm/components/VOnsSplitter'
